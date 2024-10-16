@@ -129,3 +129,14 @@ with SpheroEduAPI(toy) as droid:
     droid.set_speed(-40)
     time.sleep(1)
     droid.set_speed(0)
+
+    smiley_face = [
+        [0, 0, 1, 0, 0, 1, 0, 0],  # Row 0
+        [0, 0, 1, 0, 0, 1, 0, 0],  # Row 1
+        [0, 0, 0, 0, 0, 0, 0, 0],  # Row 2
+        [1, 0, 0, 0, 0, 0, 0, 1],  # Row 3
+        [0, 1, 0, 0, 0, 0, 1, 0],  # Row 4
+        [0, 0, 1, 0, 0, 1, 0, 0],  # Row 5 (smiling mouth)
+        [0, 0, 0, 1, 1, 0, 0, 0],  # Row 6
+        [0, 0, 0, 0, 0, 0, 0, 0],  # Row 7 (blank)
+        ]
