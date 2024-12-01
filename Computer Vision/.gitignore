@@ -1,0 +1,11 @@
+# Ignore the images folder and all its contents
+Computer Vision/HW9/images/
+
+# Ignore the annotations folder and all its contents
+Computer Vision/HW9/annotations/
+
+# Ignore the oxford_segmentation.keras file
+oxford_segmentation.keras
+
+# Ignore all .tar.gz files anywhere in the repo
+*.tar.gz
