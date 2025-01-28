@@ -106,11 +106,13 @@ def poem_title_text(poemlist, n):
                 break
 
             # Append all the text together 
-            poem_full_text += p.get_text(strip=True) + "\n"
+            poem_full_text += p.get_text(strip=False) + "\n"
     else:
         print("Poem header not found.")
     poem_info = (poems[n][0], poem_full_text) #create tuple with poem title and text inside
 
     poem_return.append(poem_info)
+    poem_return[0][1].replace("\n", " ")
+    print(poem_return[0][1])
     return poem_return[0][0], poem_return[0][1]
-poem_title_text(poems(), 0)
+poem_title_text(poems(), 5)
