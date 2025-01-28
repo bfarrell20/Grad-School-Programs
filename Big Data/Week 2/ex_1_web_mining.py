@@ -110,5 +110,7 @@ def poem_title_text(poemlist, n):
     else:
         print("Poem header not found.")
     poem_info = (poems[n][0], poem_full_text) #create tuple with poem title and text inside
+
     poem_return.append(poem_info)
-    return poem_return
+    return poem_return[0][0], poem_return[0][1]
+poem_title_text(poems(), 0)
