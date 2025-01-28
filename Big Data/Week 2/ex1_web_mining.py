@@ -17,7 +17,7 @@ def books():
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
-    soup = BeautifulSoup(html_content, "html.parser")
+    soup = BeautifulSoup(html_content, "lxml")
 
     # Find the "Literature" dropdown
     all_dropdowns = soup.find_all("li", {"class": "wds-dropdown"})
