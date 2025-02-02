@@ -9,3 +9,7 @@ oxford_segmentation.keras
 
 # Ignore all .tar.gz files anywhere in the repo
 *.tar.gz
+
+#Ignore Big Data Week 3 Ex 2 files
+*.tsv.gz
+*.tsv

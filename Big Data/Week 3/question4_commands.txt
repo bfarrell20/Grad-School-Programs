@@ -1,0 +1,6 @@
+zcat arcos_all_washpost.tsv.gz | shuf -n 7500 > sample.tsv
+cut -f30 sample.tsv | cut -c1-4 > years.txt
+sort years.txt | uniq -c
+scaling_factor = total_rows / sample_size
+              = 178,598,026 / 7,500
+              ≈ 23,813
