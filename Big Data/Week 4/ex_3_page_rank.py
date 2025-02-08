@@ -35,6 +35,7 @@ def prepare_matrix():
     # Handle rows with zero sum
     normalized_matrix[row_sums.flatten() == 0] = 1 / matrix_size
 
+    print(normalized_matrix)
     return normalized_matrix
 
 def TrafficRank(iter):
@@ -54,6 +55,7 @@ def TrafficRank(iter):
     for _ in range(iter):
         rank_vector = damping_factor * transition_matrix.T @ rank_vector + (1 - damping_factor) / num_nodes
 
+    print(rank_vector)
     return rank_vector
 
 prepare_matrix()
