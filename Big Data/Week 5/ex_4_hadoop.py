@@ -28,12 +28,4 @@ def γ(f, seq):
         result[key].append(item)  # Append item to the corresponding list
     return result
 
-# Test cases
-print(十(1, 2, 3))  # Output: 6
-print(一(5, 1, 2))  # Output: 2
-print(乛(5, 1, 2))      # Output: 6
-print(乛(5, 1, 2, 3))   # Output: 3
-print(ϵ([1, [2, [3, 4], [5, 6], 7], 8, [9, 10]])) 
-print(γ(len, ["hi", "dog", "me", "bad", "good"]))
-
 
