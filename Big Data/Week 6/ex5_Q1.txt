@@ -1,0 +1,11 @@
+val data = Array(1,2,3,4,5)
+var counter = 0
+var rdd = sc.parallelize(data)
+
+// Wrong: Don't do this!!
+//rdd.foreach(x => counter += x)
+
+//Do this instead (from stack overflow)
+val counter=sc.accumulator(0)
+
+println("Counter value: " + counter)
