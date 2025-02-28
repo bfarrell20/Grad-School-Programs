@@ -1,11 +1,21 @@
-val data = Array(1,2,3,4,5)
-var counter = 0
-var rdd = sc.parallelize(data)
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.util.LongAccumulator
 
-// Wrong: Don't do this!!
-//rdd.foreach(x => counter += x)
+object SparkAccumulatorExample {
+  def main(args: Array[String]): Unit = {
+    val conf = new SparkConf().setAppName("AccumulatorExample").setMaster("local[*]")
+    val sc = new SparkContext(conf)
 
-//Do this instead (from stack overflow)
-val counter=sc.accumulator(0)
+    val data = Array(1, 2, 3, 4, 5)
+    val rdd = sc.parallelize(data)
 
-println("Counter value: " + counter)
+    // Correct approach using Accumulator
+    val counter: LongAccumulator = sc.longAccumulator("Counter Accumulator")
+
+    rdd.foreach(x => counter.add(x))
+
+    println("Counter value: " + counter.value)
+    
+    sc.stop()
+  }
+}
