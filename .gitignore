@@ -14,3 +14,5 @@ oxford_segmentation.keras
 *.tsv.gz
 *.tsv
 *.asc
+Big Data/Week 6/taggers
+Big Data/Week 6/tokenizers
