@@ -1,23 +1,19 @@
-import random
-import re, string, requests
+import re, string, requests, random
 stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
 stopwords = list(set(stopwords_list.decode().splitlines()))
-
-def ο(text, is_recursive=False):
-    if not is_recursive:
-        text = text.lower()
-        text = re.sub(r'\[.*?\]', '', text)
-        text = re.sub(r'[%s]' % re.escape(string.punctuation), ' ', text)
-        text = re.sub(r'[\d]+', ' ', text)
-        text = ' '.join(remove_stopwords(text))
-        return ο(text, is_recursive=True)
-    else:
-        # Base case
-        return text
 
 def remove_stopwords(words):
     list_ = re.sub(r'[^a-zA-Z0-9]', " ", words.lower()).split()
     return [itm for itm in list_ if itm not in stopwords]
+
+
+
+def clean_text(text):
+    text = text.lower()
+    text = re.sub(r'\[.*?\]', '', text)
+    text = re.sub(r'[%s]' % re.escape(string.punctuation), ' ', text)
+    text = re.sub(r'[\d]+', ' ', text)
+    return ' '.join(remove_stopwords(text))
 
 def word_generator():
     """Yields words from the poem one at a time."""
@@ -149,7 +145,7 @@ And this was scarcely odd, because
       They'd eaten every one."
 
     """
-    cleaned_poem = ο(poem)
+    cleaned_poem = clean_text(poem)
     for word in cleaned_poem.split():
         yield word
 
@@ -160,7 +156,7 @@ def sample_words(sample_size, word_num):
     
     
     # Collect the next sample_size words
-    sampled = [next(gen, None) for _ in range(sample_size)]
+    sampled = [next(gen, None) for _ in range(8)]
     return tuple(sampled)
 
 # Example usage
