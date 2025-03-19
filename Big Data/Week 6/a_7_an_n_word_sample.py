@@ -1,4 +1,5 @@
 import re, string, requests, random
+random.seed(2025) 
 stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
 stopwords = list(set(stopwords_list.decode().splitlines()))
 
@@ -151,13 +152,16 @@ And this was scarcely odd, because
 
 def sample_words(sample_size, word_num):
     """Returns a tuple of size sample_size after word_num words have been received."""
-    random.seed(2025)  # Ensure consistency and repeatability
+# Ensure consistency and repeatability
     gen = word_generator()
     
     
     # Collect the next sample_size words
-    sampled = [next(gen, None) for _ in range(8)]
-    return tuple(sampled)
+    
+    sampled = [next(gen, None) for _ in range(word_num)]
+    print(sampled)
+    
+    return tuple(random.choice(sampled) for _ in range(5))
 
 # Example usage
 if __name__ == "__main__":
