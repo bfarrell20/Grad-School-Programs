@@ -1,5 +1,5 @@
 from pyspark.sql import functions as F
-from pyspark.sql.window import Window
+from pyspark.sql.window import Window, spark
 
 # Load AAPL and MSFT data separately
 aapl_data = spark.read.option("header", "true").csv("hdfs://cluster-4290-m/user/root/AAPL_data.csv")
