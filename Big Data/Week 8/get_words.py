@@ -1,6 +1,8 @@
-def get_afinn_bad_words(filepath):
+import string
+
+def get_afinn_bad_words(input_file, output_file):
     bad_words = set()
-    with open(filepath, 'r') as file:
+    with open(input_file, 'r') as file:
         for line in file:
             if not line.strip():
                 continue
@@ -9,15 +11,21 @@ def get_afinn_bad_words(filepath):
                 word, score_str = parts
                 try:
                     score = int(score_str)
-                    if score == -4 or score == -5:
-                        bad_words.add(word)
+                    if score in {-4, -5}:
+                        # Remove punctuation from the word
+                        word_clean = word.translate(str.maketrans('', '', string.punctuation))
+                        bad_words.add(word_clean.lower())
                 except ValueError:
-                    pass  # skip lines with invalid scores
-    return bad_words
+                    continue
+
+    # Write to file, one word per line
+    with open(output_file, 'w') as out:
+        for word in sorted(bad_words):
+            out.write(f"{word}\n")
 
 # Example usage
 if __name__ == '__main__':
-    afinn_path = 'AFN.txt'  # Change this to your actual file path
-    severe_neg_words = get_afinn_bad_words(afinn_path)
-    print(f"Words with sentiment -4 or -5 ({len(severe_neg_words)} words):")
-    print(sorted(severe_neg_words))
+    afinn_path = 'AFN.txt'  # Replace with your actual AFINN file path
+    output_path = 'bad_words.txt'
+    get_afinn_bad_words(afinn_path, output_path)
+    print(f"Saved bad words to {output_path}")
